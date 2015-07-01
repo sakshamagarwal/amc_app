@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Detail_and_Rate extends Activity {
@@ -74,6 +76,14 @@ public class Detail_and_Rate extends Activity {
             }
             EditText review = (EditText)rootView.findViewById(R.id.review_text);
             KeyboardManager km = new KeyboardManager((ViewGroup)rootView.findViewById(R.id.detail_and_rate_layout), getActivity());
+            Button submit = (Button)rootView.findViewById(R.id.rate_button);
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(),"Thanks for your feedback", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(),maintainance.class));
+                }
+            });
             return rootView;
         }
 

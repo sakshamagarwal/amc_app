@@ -63,6 +63,14 @@ public class new_enquiry1 extends Activity {
             }
         });
 
+        Button submit = (Button)findViewById(R.id.enquity_submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Your vendor will reply soon", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),enquiry.class));
+            }
+        });
 
     }
 
