@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+ 
+         
+    
+    <ImageButton
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/back"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_launcher"
+        android:onClick="go_back"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_toRightOf="@+id/back"
+        android:text="SIGN UP"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:background="#AAAAAF"
+        />
+    <EditText 
+        android:id="@+id/signup_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:layout_below="@+id/back"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="70dp"
+        />
+  <EditText 
+        android:id="@+id/signup_emailid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Email id"
+        android:layout_below="@+id/signup_username"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        />
+  
+  <EditText 
+        android:id="@+id/signup_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/signup_mobileno"
+        android:layout_marginTop="10dp"
+         android:layout_marginLeft="70dp"
+        />
+  <EditText 
+        android:id="@+id/signup_confirmpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/signup_pass"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        />
+  <EditText 
+        android:id="@+id/signup_mobileno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Mobile No"
+        android:inputType="number"
+        android:layout_below="@+id/signup_emailid"
+        android:layout_marginTop="10dp"
+         android:layout_marginLeft="70dp"
+        />
+  <Button 
+        android:id="@+id/next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEXT"
+        android:layout_below="@+id/signup_confirmpass"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        />
+ </RelativeLayout>
+ 

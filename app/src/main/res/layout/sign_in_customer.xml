@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sign_in_layout"
+     >
+     
+    
+    <ImageButton
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/back"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_launcher"
+        android:onClick="go_back"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_toRightOf="@+id/back"
+        android:text="SIGN IN"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:background="#AAAAAF"
+        />
+    <EditText 
+        android:id="@+id/signin_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/back"
+        android:layout_marginTop="150dp"
+        />
+  <EditText 
+        android:id="@+id/signin_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/signin_username"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        />
+  <Button 
+        android:id="@+id/sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN IN"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/signin_pass"
+        android:layout_marginTop="10dp"
+        />
+
+  <TextView
+      android:id="@+id/forgotpass"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/sign_in"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="20dp"
+      android:text="@string/forgotpass"
+      android:clickable="true"
+       />
+
+</RelativeLayout>

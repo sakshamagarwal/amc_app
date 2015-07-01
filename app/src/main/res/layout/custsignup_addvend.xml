@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+     
+       <ImageButton
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/back"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_launcher"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_toRightOf="@+id/back"
+        android:text="SIGN UP"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:background="#AAAAAF"
+        />
+    <EditText 
+        android:id="@+id/signup_vendorid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Vendor ID"
+        android:layout_below="@+id/back"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="70dp"
+        />
+  <EditText 
+        android:id="@+id/signup_regno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Registration No."
+        android:layout_below="@+id/signup_vendorid"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        />
+   <Button 
+        android:id="@+id/add_vend_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:layout_below="@+id/signup_regno"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>    

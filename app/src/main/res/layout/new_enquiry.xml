@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/new_enquiry_layout"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:id="@+id/new_enquiry_text"
+        android:text="POST NEW ENQUIRY"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:background="#AAAAAF"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Device"
+        android:id="@+id/enquiry_device_text"
+        android:layout_below="@+id/new_enquiry_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:focusableInTouchMode="true"/>
+
+    <Spinner
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:id="@+id/spinner_device"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/enquiry_device_text"
+        android:clickable="true"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/brand_text"
+        android:text="SELECT BRAND"
+        android:layout_below="@+id/spinner_device"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:focusableInTouchMode="true"/>
+
+    <Spinner
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:id="@+id/spinner_brand"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/brand_text"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/model_text"
+        android:text="SELECT MODEL"
+        android:layout_below="@+id/spinner_brand"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:focusableInTouchMode="true"/>
+
+    <Spinner
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:id="@+id/spinner_model"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/model_text"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments"
+        android:id="@+id/comments_text"
+        android:layout_below="@+id/spinner_model"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:focusableInTouchMode="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/comments"
+        android:layout_below="@+id/comments_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+
+
+</RelativeLayout>

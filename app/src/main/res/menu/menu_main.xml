@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/enquiry_mode" android:title="Switch to Enquiry"
+        android:orderInCategory="100" android:showAsAction="always" />
+
+    <item android:id="@+id/profile"
+        android:title="Post New Request"
+        android:icon="@drawable/add_icon"
+        android:orderInCategory="100" android:showAsAction="always" />
+</menu>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AMCapp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="appnamewelcome">WELCOME TO XYZ</string>
+    <string name="signup">SIGN UP</string>
+    <string name="signin">SIGN IN</string>
+    <string name="forgotpass"><i>forgot password ?</i></string>
+    <string name="custchoicetext"><i>What are you looking for Today</i></string>
+
+    <string-array name="device_choices">
+        <item>Laptop</item>
+        <item>Television</item>
+        <item>Refrigerator</item>
+        <item>Water-Purifier</item>
+        <item>Mobile</item>
+        <item>Mixer-Grinder</item>
+    </string-array>
+    
+    <string-array name="laptop_problems">
+        <item>Laptop Problem 1</item>
+        <item>Laptop Problem 2</item>
+        <item>Laptop Problem 3</item>
+        <item>Laptop Problem 4</item>
+        <item>Laptop Problem 5</item>
+    </string-array>
+
+    <string-array name="tv_problems">
+        <item>TV problem 1</item>
+        <item>TV problem 2</item>
+        <item>TV problem 3</item>
+        <item>TV problem 4</item>
+        <item>TV problem 5</item>
+    </string-array>
+
+    <string-array name="laptop_models">
+        <item>Dell</item>
+        <item>HP</item>
+        <item>Lenovo</item>
+        <item>Some Random Brand</item>
+    </string-array>
+
+    <string-array name="tv_models">
+        <item>Samsung</item>
+        <item>Sony</item>
+        <item>Panasonic</item>
+        <item>Some other random brand</item>
+    </string-array>
+    <string name="title_activity_detail_and__rate">Detail_and_Rate</string>
+
+</resources>

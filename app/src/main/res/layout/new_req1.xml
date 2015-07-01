@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/new_req1_layout"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:id="@+id/new_req1_text"
+        android:text="POST NEW REQUEST - 1/2"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:background="#AAAAAF"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Device"
+        android:id="@+id/device_text"
+        android:layout_below="@+id/new_req1_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:focusableInTouchMode="true"/>
+
+    <Spinner
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:id="@+id/spinner_device"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/device_text"
+        android:clickable="true"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/problem_text"
+        android:text="Device Problem"
+        android:layout_below="@+id/spinner_device"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:focusableInTouchMode="true"/>
+
+    <Spinner
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:id="@+id/spinner_problem"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/problem_text"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:id="@+id/description_text"
+        android:layout_below="@+id/spinner_problem"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:focusableInTouchMode="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/description"
+        android:layout_below="@+id/description_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/next1"
+        android:layout_below="@+id/description"
+        android:layout_toEndOf="@+id/description"
+        android:src="@drawable/forward"/>
+
+
+</RelativeLayout>

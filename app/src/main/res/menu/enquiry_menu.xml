@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/maintainence_mode" android:title="Switch to Maintainence"
+        android:orderInCategory="100" android:showAsAction="always" />
+
+    <item android:id="@+id/add_enquiry"
+        android:title="Post New Enquiry"
+        android:icon="@drawable/add_icon"
+        android:orderInCategory="100" android:showAsAction="always" />
+</menu>
