@@ -18,13 +18,14 @@ import org.json.JSONObject;
 public class sign_in_customer extends Activity {
     EditText username, password;
     String uname, pass;
+    TextView forgotpass;
     boolean correct_login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in_customer);
 
-        TextView forgotpass = (TextView) findViewById(R.id.forgotpass);
+        forgotpass = (TextView) findViewById(R.id.forgotpass);
         forgotpass.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -87,6 +88,7 @@ public class sign_in_customer extends Activity {
                 uname_iter = columns.getJSONObject(1).getString("v");
                 if (uname_iter.equals(uname)) {
                     pass_iter = columns.getJSONObject(4).getString("v");
+                    //forgotpass.setText(uname_iter);
                     if (pass.equals(pass_iter)) {
                         return true;
                     }

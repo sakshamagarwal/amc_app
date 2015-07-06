@@ -42,7 +42,7 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         int start = result.indexOf("{", result.indexOf("{") + 1);
         int end = result.lastIndexOf("}");
         String jsonResponse = result.substring(start, end);
-        jsonResponse = jsonResponse.replaceAll("new Date(.*)\\)", "\"hello\"");
+        jsonResponse = jsonResponse.replaceAll("new Date(.*?)\\)", "\"hello\"");
         jsonResponse = jsonResponse.replaceAll("\"type\":\"datetime\"", "\"type\":\"string\"");
         jsonResponse = jsonResponse.replaceAll(",\"pattern\":\"M/d/yyyy H:mm:ss\"", "");
         try {

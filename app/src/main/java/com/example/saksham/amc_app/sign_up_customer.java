@@ -32,7 +32,7 @@ public class sign_up_customer extends Activity {
         setContentView(R.layout.sign_up_customer);
         KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.sign_up_layout), getApplicationContext());
         Button next_btn =(Button)findViewById(R.id.next_btn);
-        t = (TextView)findViewById(R.id.sign_up_text);
+        t = (TextView)findViewById(R.id.textView);
         usernameEditText = (EditText)findViewById(R.id.signup_username);
         emailidEditText = (EditText) findViewById(R.id.signup_emailid);
         passwordEditText = (EditText) findViewById(R.id.signup_pass);
@@ -59,6 +59,7 @@ public class sign_up_customer extends Activity {
                     @Override
                     public void onResult(JSONObject object) {
                         processJson(object);
+                        //t.setText(uname_data[0] + " " + uname_data[1]);
                         if (Arrays.asList(uname_data).contains(username)) {
                             Toast.makeText(getApplicationContext(), "Sorry username already used", Toast.LENGTH_SHORT).show();
                         } else if (Arrays.asList(email_data).contains(emailid)) {
@@ -99,11 +100,13 @@ public class sign_up_customer extends Activity {
     private void processJson(JSONObject object) {
         try {
             JSONArray rows = object.getJSONArray("rows");
+            //t.setText(object.toString());
             int len = rows.length();
-            uname_data = new String[len];
-            email_data = new String[len];
-            mobile_data = new String[len];
-            for (int r = 0; r < len; ++r) {
+            uname_data = new String[len+1];
+            email_data = new String[len+1];
+            mobile_data = new String[len+1];
+            int r = 0;
+            //for (int r = 0; r < len; ++r) {
                 JSONObject row = rows.getJSONObject(r);
                 JSONArray columns = row.getJSONArray("c");
                 String name = columns.getJSONObject(1).getString("v");
@@ -112,7 +115,7 @@ public class sign_up_customer extends Activity {
                 uname_data[r] = name;
                 email_data[r] = e;
                 mobile_data[r] = m;
-            }
+            //}
         } catch (JSONException e) {
             e.printStackTrace();
             //t.setText("Hello Exception");
