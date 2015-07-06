@@ -29,6 +29,9 @@ public class new_req1 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_req1);
+
+        Intent i = getIntent();
+        Toast.makeText(getApplicationContext(), "Hi " + i.getStringExtra(Intent.EXTRA_TEXT) + "\nNothing else is functional yet", Toast.LENGTH_SHORT).show();
         ImageButton next_page = (ImageButton)findViewById(R.id.next1);
         next_page.setOnClickListener(new View.OnClickListener() {
             @Override

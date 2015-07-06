@@ -19,7 +19,7 @@ public class KeyboardManager {
     public KeyboardManager(ViewGroup l, Context c) {
         layout = l;
         context = c;
-        l.setOnTouchListener(new View.OnTouchListener() {
+        layout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -27,7 +27,7 @@ public class KeyboardManager {
                 return false;
             }
         });
-        count = l.getChildCount();
+        count = layout.getChildCount();
         for (int i = 0; i < count; i++) {
             View v = layout.getChildAt(i);
             if (!(v instanceof EditText)) {
