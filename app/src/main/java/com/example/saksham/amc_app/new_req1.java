@@ -2,6 +2,7 @@ package com.example.saksham.amc_app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.Image;
 import android.os.Bundle;
 import android.text.Layout;
@@ -29,9 +30,12 @@ public class new_req1 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_req1);
-
+        DBHelper my_db = new DBHelper(getApplicationContext());
+        my_db.open();
         Intent i = getIntent();
-        Toast.makeText(getApplicationContext(), "Hi " + i.getStringExtra(Intent.EXTRA_TEXT) + "\nNothing else is functional yet", Toast.LENGTH_SHORT).show();
+        String name = my_db.get_name(my_db.get_user());
+        Toast.makeText(getApplicationContext(), "Hi " + name + "\nHope you got customer delight", Toast.LENGTH_LONG).show();
+        my_db.close();
         ImageButton next_page = (ImageButton)findViewById(R.id.next1);
         next_page.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +92,13 @@ public class new_req1 extends Activity {
                 return true;
             case R.id.history_button:
                 startActivity(new Intent(getApplicationContext(), maintainance.class));
+                return true;
+            case R.id.logout_button:
+                DBHelper amc_db = new DBHelper(getApplicationContext());
+                amc_db.open();
+                amc_db.logout();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                //Toast.makeText(getApplicationContext(), amc_db.get_user(), Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -1,36 +1,30 @@
 package com.example.saksham.amc_app;
 
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.Toast;
+import android.app.ActionBar.Tab;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by saksham on 22/6/15.
- */
-public class maintainance extends Activity {
 
-    String uid;
+public class VendorRequests extends Activity {
+
     DBHelper amc_db;
-
+    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
-        setContentView(R.layout.maintainance);
+        setContentView(R.layout.activity_vendor_requests);
         amc_db = new DBHelper(getApplicationContext());
         amc_db.open();
         uid = amc_db.get_user();
@@ -39,46 +33,56 @@ public class maintainance extends Activity {
             @Override
             public void onResult(JSONObject object) {
                 update_requests(object, uid);
-
             }
         }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1vi4YuASm8Pn9w3TXZrdsD6zsaHHVRAc1I5STzC8ix7M");
 
+        new DownloadWebpageTask(new AsyncResult() {
+            @Override
+            public void onResult(JSONObject object) {
+                get_engineer_list(object, uid);
+            }
+        },getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1ktZNgZJOR2BD0TliTd2oaYe7WhmZhvtG_gZXAEE6APM");
 
         ActionBar ab = getActionBar();
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         String label1 = "Pending Requests";
         Tab tab = ab.newTab();
         tab.setText(label1);
-        TabListener<Tab1Fragment> t1 = new TabListener<Tab1Fragment>(this,label1,Tab1Fragment.class);
+        TabListener<vendorTab1Fragment> t1 = new TabListener<vendorTab1Fragment>(this,label1,vendorTab1Fragment.class);
         tab.setTabListener(t1);
         ab.addTab(tab);
         String label2 = "Completed Requests";
         tab = ab.newTab();
         tab.setText(label2);
-        TabListener<Tab2Fragment> t2 = new TabListener<Tab2Fragment>(this,label2,Tab2Fragment.class);
+        TabListener<vendorTab2Fragment> t2 = new TabListener<vendorTab2Fragment>(this,label2,vendorTab2Fragment.class);
         tab.setTabListener(t2);
         ab.addTab(tab);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_vendor_requests, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.enquiry_mode:
-                startActivity(new Intent(getApplicationContext(),enquiry.class));
-                return true;
-            case R.id.profile:
-                startActivity(new Intent(getApplicationContext(),MaintenanceRequest.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.action_logout) {
+            amc_db.logout();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private class TabListener<T extends Fragment> implements ActionBar.TabListener {
@@ -140,7 +144,7 @@ public class maintainance extends Activity {
                 description = columns.getJSONObject(5).getString("v");
                 dates = columns.getJSONObject(6).getString("v");
                 status = columns.getJSONObject(7).getString("v");
-                if (user_id.equals(uid)) {
+                if (vendor.equals(uid)) {
                     amc_db.add_request(vendor, user_id, device, problem,description,dates, status);
                 }
             }
@@ -153,6 +157,47 @@ public class maintainance extends Activity {
             e.printStackTrace();
         }
     }
+
+    private void get_engineer_list(JSONObject object, String user) {
+        String vendor;
+        String eng;
+        String name;
+        String[] temp;
+        try {
+            JSONArray rows = object.getJSONArray("rows");
+            String result = "";
+            int len = rows.length();
+            int i = 0;
+            for (int r = 0; r < len; ++r) {
+                JSONObject row = rows.getJSONObject(r);
+                JSONArray columns = row.getJSONArray("c");
+                vendor = columns.getJSONObject(1).getString("v");
+                eng = columns.getJSONObject(2).getString("v");
+                name = columns.getJSONObject(3).getString("v");
+                    /*description = columns.getJSONObject(5).getString("v");
+                    dates = columns.getJSONObject(6).getString("v");
+                    status = columns.getJSONObject(7).getString("v");*/
+                if (vendor.equals(user)) {
+                    amc_db.add_engineer(vendor, eng, name);
+                }
+            }
+            /*temp = new String[i];
+            for (int j= 0; j < len; j++) {
+                if (engineers[j]!=null) {
+                    temp[j] = engineers[j];
+                }
+            }
+
+            engineers = new String[i];
+            for (int j = 0; j < i; j++ ) {
+                engineers[j] = temp[j];
+            }*/
+
+            //Log.i("id---", id+"");
+            //t.setText(result);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-

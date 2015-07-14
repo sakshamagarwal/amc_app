@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.saksham.amc_app.MaintenanceRequest">
+    <item android:id="@+id/action_logout" android:title="Logout"
+        android:orderInCategory="100" android:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="Re-sync"
+        android:showAsAction="never"/>
+
+    <item
+        android:id="@+id/history_button"
+        android:title="History"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/enquiry_button"
+        android:title="Enquiry"
+        android:showAsAction="ifRoom"/>
+
+</menu>

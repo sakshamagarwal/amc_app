@@ -19,41 +19,106 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".landingpage"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".intro_customer"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".sign_in_customer"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".sign_up_customer"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".forgot_password"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".intro_vendor"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".custsignup_addvend"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".customerchoice"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".new_req1"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".maintainence_newreq2"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".maintainance"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".landingpage"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".intro_customer"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".sign_in_customer"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".sign_up_customer"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".forgot_password"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".intro_vendor"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".custsignup_addvend"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".customerchoice"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".new_req1"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".maintainence_newreq2"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".maintainance"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Detail_and_Rate"
             android:label="@string/title_activity_detail_and__rate"
             android:parentActivityName=".maintainance"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.saksham.amc_app.maintainance" />
         </activity>
-        <activity android:name=".enquiry"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".new_enquiry1"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".enquiry"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".new_enquiry1"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".customer_login"
+            android:label="@string/title_activity_customer_login"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".forgot_id"
+            android:label="@string/title_activity_forgot_id"
+            android:parentActivityName=".customer_login" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.saksham.amc_app.customer_login" />
+        </activity>
+        <activity
+            android:name=".MaintenanceRequest"
+            android:label="@string/title_activity_maintenance_request"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.saksham.amc_app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".add_device"
+            android:label="@string/title_activity_add_device"
+            android:parentActivityName=".MaintenanceRequest" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.saksham.amc_app.customer_login" />
+        </activity>
+        <activity
+            android:name=".VendorLogin"
+            android:label="@string/title_activity_vendor_login"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.saksham.amc_app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".VendorRequests"
+            android:label="@string/title_activity_vendor_requests"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.saksham.amc_app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ProcessRequest"
+            android:label="@string/title_activity_process_request" >
+        </activity>
     </application>
 
 </manifest>

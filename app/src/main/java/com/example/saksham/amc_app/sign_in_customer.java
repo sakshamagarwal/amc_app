@@ -31,8 +31,8 @@ public class sign_in_customer extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(sign_in_customer.this, forgot_password.class);
-                startActivity(intent);
+                //Intent intent = new Intent(sign_in_customer.this, forgot_password.class);
+                //startActivity(intent);
             }
         });
 
@@ -70,7 +70,7 @@ public class sign_in_customer extends Activity {
                             Toast.makeText(getApplicationContext(), "Invalid username/password", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }).execute("https://spreadsheets.google.com/tq?key=16ssUOZJADeDbuJQIkaYahxoqERKhsw6aE1KmojuaA70");
+                }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=16ssUOZJADeDbuJQIkaYahxoqERKhsw6aE1KmojuaA70");
 
             }
         });

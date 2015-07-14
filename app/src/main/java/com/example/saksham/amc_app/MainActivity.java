@@ -14,14 +14,19 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final DBHelper amc_db = new DBHelper(getApplicationContext());
+        amc_db.open();
         ImageButton homebtn = (ImageButton) findViewById(R.id.btn_home);
         homebtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(MainActivity.this, landingpage.class);
-                startActivity(intent);
+                if (!amc_db.isLoggedIn()) {
+                    startActivity(new Intent(getApplicationContext(), customer_login.class));
+                } else {
+                    startActivity(new Intent(getApplicationContext(), MaintenanceRequest.class));
+                }
             }
         });
 

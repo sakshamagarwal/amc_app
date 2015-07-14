@@ -68,7 +68,7 @@
         android:layout_height="100dp"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/description"
+
         android:layout_below="@+id/description_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>

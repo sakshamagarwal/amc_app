@@ -3,6 +3,7 @@ package com.example.saksham.amc_app;
 /**
  * Created by saksham on 4/7/15.
  */
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.TextView;
@@ -20,8 +21,11 @@ import java.net.URL;
 
 public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
     AsyncResult callback;
-    public DownloadWebpageTask(AsyncResult callback) {
+    private ProgressDialog pd;
+    Context c;
+    public DownloadWebpageTask(AsyncResult callback, Context context) {
         this.callback = callback;
+        this.c = context;
     }
 
     @Override
@@ -97,5 +101,6 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         }
         return sb.toString();
     }
+
 }
 

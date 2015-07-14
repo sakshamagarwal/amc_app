@@ -79,7 +79,7 @@ public class sign_up_customer extends Activity {
                             Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }).execute("https://spreadsheets.google.com/tq?key=16ssUOZJADeDbuJQIkaYahxoqERKhsw6aE1KmojuaA70");
+                }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=16ssUOZJADeDbuJQIkaYahxoqERKhsw6aE1KmojuaA70");
 
             }
         });

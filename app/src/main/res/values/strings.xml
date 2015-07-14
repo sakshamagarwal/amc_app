@@ -11,12 +11,12 @@
     <string name="custchoicetext"><i>What are you looking for Today</i></string>
 
     <string-array name="device_choices">
-        <item>Laptop</item>
-        <item>Television</item>
-        <item>Refrigerator</item>
-        <item>Water-Purifier</item>
-        <item>Mobile</item>
-        <item>Mixer-Grinder</item>
+        <item>laptop</item>
+        <item>mobile</item>
+        <item>tv</item>
+        <item>refrigerator</item>
+        <item>ipod</item>
+        <item>iwatch</item>
     </string-array>
     
     <string-array name="laptop_problems">
@@ -49,5 +49,12 @@
         <item>Some other random brand</item>
     </string-array>
     <string name="title_activity_detail_and__rate">Detail_and_Rate</string>
+    <string name="title_activity_customer_login">customer_login</string>
+    <string name="title_activity_forgot_id">forgot_id</string>
+    <string name="title_activity_maintenance_request">MaintenanceRequest</string>
+    <string name="title_activity_add_device">add_device</string>
+    <string name="title_activity_vendor_login">VendorLogin</string>
+    <string name="title_activity_vendor_requests">VendorRequests</string>
+    <string name="title_activity_process_request">ProcessRequest</string>
 
 </resources>

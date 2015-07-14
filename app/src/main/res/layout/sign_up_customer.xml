@@ -33,6 +33,7 @@
         android:layout_below="@+id/back"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="70dp"
+        android:singleLine="true"
         />
   <EditText 
         android:id="@+id/signup_emailid"

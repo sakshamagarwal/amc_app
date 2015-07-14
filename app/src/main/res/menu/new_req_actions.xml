@@ -10,4 +10,9 @@
         android:title="Switch to Enquiry"
         android:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/logout_button"
+        android:title="Logout"
+        android:showAsAction="never"></item>
+
 </menu>

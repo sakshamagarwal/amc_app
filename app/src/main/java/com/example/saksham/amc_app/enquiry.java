@@ -13,13 +13,33 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by saksham on 22/6/15.
  */
 public class enquiry extends Activity {
+    DBHelper amc_db;
+    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        amc_db = new DBHelper(getApplicationContext());
+        amc_db.open();
+        uid = amc_db.get_user();
+
+        new DownloadWebpageTask(new AsyncResult() {
+            @Override
+            public void onResult(JSONObject object) {
+                update_enquiries(object, uid);
+
+            }
+        }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1LexGBch7rDXbyK0h_KqdEp27KsN-77p4W8m5NEvWWuM");
+
+
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.maintainance);
         ActionBar ab = getActionBar();
@@ -92,6 +112,40 @@ public class enquiry extends Activity {
             {
                 ft.detach(mFragment);
             }
+        }
+    }
+
+
+    private void update_enquiries(JSONObject object, String user) {
+        String user_id;
+        String vendor;
+        String device;
+        String category;
+        String status;
+        try {
+            JSONArray rows = object.getJSONArray("rows");
+            String result = "";
+            int len = rows.length();
+            for (int r = 0; r < len; ++r) {
+                JSONObject row = rows.getJSONObject(r);
+                JSONArray columns = row.getJSONArray("c");
+
+                user_id = columns.getJSONObject(2).getString("v");
+                vendor = columns.getJSONObject(1).getString("v");
+                device = columns.getJSONObject(3).getString("v");
+                category = columns.getJSONObject(4).getString("v");
+                status = columns.getJSONObject(5).getString("v");
+                if (user_id.equals(uid)) {
+                    amc_db.add_enquiry(vendor, user_id, device, category, status);
+                }
+            }
+
+
+            //Log.i("id---", id+"");
+            //t.setText(result);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }
