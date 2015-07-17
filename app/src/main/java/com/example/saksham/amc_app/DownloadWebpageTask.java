@@ -21,13 +21,21 @@ import java.net.URL;
 
 public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
     AsyncResult callback;
-    private ProgressDialog pd;
+     ProgressDialog pd;
     Context c;
     public DownloadWebpageTask(AsyncResult callback, Context context) {
         this.callback = callback;
         this.c = context;
     }
 
+
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        pd = ProgressDialog.show(this.c, "", "Loading");
+
+    }
     @Override
     protected String doInBackground(String... urls) {
 
@@ -43,6 +51,9 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         // remove the unnecessary parts from the response and construct a JSON
+        if (pd!=null) {
+            pd.dismiss();
+        }
         int start = result.indexOf("{", result.indexOf("{") + 1);
         int end = result.lastIndexOf("}");
         String jsonResponse = result.substring(start, end);

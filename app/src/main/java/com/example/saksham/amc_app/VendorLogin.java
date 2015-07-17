@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,7 +38,8 @@ public class VendorLogin extends Activity {
 
             }
         });
-        amc_db = new DBHelper(getApplicationContext());
+        KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.vendor_login_layout) ,VendorLogin.this);
+        amc_db = new DBHelper(VendorLogin.this);
         amc_db.open();
         username = (EditText)findViewById(R.id.signin_username);
         password = (EditText)findViewById(R.id.signin_pass);
@@ -57,13 +59,13 @@ public class VendorLogin extends Activity {
                         boolean correct_login = validate_login(object, uname, pass);
                         if (correct_login) {
                             amc_db.login(uname);
-                            Intent i = new Intent(getApplicationContext(), VendorRequests.class).putExtra(Intent.EXTRA_TEXT, uname);
+                            Intent i = new Intent(VendorLogin.this, VendorRequests.class).putExtra(Intent.EXTRA_TEXT, uname);
                             startActivity(i);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Invalid username/password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VendorLogin.this, "Invalid username/password", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1MoXjiGRLIOzjWOLO47nBslD7h0M9ODmNNvxQq6_41Dw");
+                }, VendorLogin.this).execute("https://spreadsheets.google.com/tq?key=1MoXjiGRLIOzjWOLO47nBslD7h0M9ODmNNvxQq6_41Dw");
 
             }
         });

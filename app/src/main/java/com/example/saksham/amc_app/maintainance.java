@@ -7,6 +7,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,7 +33,7 @@ public class maintainance extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.maintainance);
-        amc_db = new DBHelper(getApplicationContext());
+        amc_db = new DBHelper(maintainance.this);
         amc_db.open();
         uid = amc_db.get_user();
 
@@ -41,11 +43,12 @@ public class maintainance extends Activity {
                 update_requests(object, uid);
 
             }
-        }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1vi4YuASm8Pn9w3TXZrdsD6zsaHHVRAc1I5STzC8ix7M");
+        }, maintainance.this).execute("https://spreadsheets.google.com/tq?key=1vi4YuASm8Pn9w3TXZrdsD6zsaHHVRAc1I5STzC8ix7M");
 
 
         ActionBar ab = getActionBar();
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2ecc71")));
         String label1 = "Pending Requests";
         Tab tab = ab.newTab();
         tab.setText(label1);
@@ -71,10 +74,10 @@ public class maintainance extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.enquiry_mode:
-                startActivity(new Intent(getApplicationContext(),enquiry.class));
+                startActivity(new Intent(maintainance.this,enquiry.class));
                 return true;
             case R.id.profile:
-                startActivity(new Intent(getApplicationContext(),MaintenanceRequest.class));
+                startActivity(new Intent(maintainance.this,MaintenanceRequest.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

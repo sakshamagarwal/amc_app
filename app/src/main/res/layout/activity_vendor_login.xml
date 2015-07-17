@@ -1,25 +1,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/vendor_login_layout">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        android:layout_toRightOf="@+id/back"
-        android:text="SIGN IN"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:background="#AAAAAF"
-        />
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:id="@+id/back"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/signin_username"
+        android:layout_marginBottom="50dp"/>
+
     <EditText
         android:id="@+id/signin_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/back"
-        android:layout_marginTop="150dp"
+        android:layout_centerInParent="true"
+        android:singleLine="true"
         />
     <EditText
         android:id="@+id/signin_pass"
@@ -30,6 +31,7 @@
         android:layout_below="@+id/signin_username"
         android:layout_marginTop="10dp"
         android:inputType="textPassword"
+        android:singleLine="true"
         />
     <Button
         android:id="@+id/signin_btnv"
@@ -39,6 +41,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/signin_pass"
         android:layout_marginTop="10dp"
+        android:background="#2ecc71"
         />
 
     <TextView
@@ -49,6 +52,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/forgotpass"
+        android:textColor="#0000FF"
         android:clickable="true"
         />
 

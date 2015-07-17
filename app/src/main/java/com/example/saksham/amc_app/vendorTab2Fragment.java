@@ -28,28 +28,25 @@ public class vendorTab2Fragment extends Fragment{
         c.moveToFirst();
         int count = c.getCount();
         if (count!=0) {
-            data = new String[count];
+            int size = 0;
+            while (!c.isAfterLast()) {
+                if (c.getString(6).equals("completed") || c.getString(6).equals("rejected")) {
+                    size++;
+                }
+                c.moveToNext();
+            }
+            if (size!=0) {
+                data = new String[size];
+            }
         }
         int i = 0;
+        c.moveToFirst();
         while (!c.isAfterLast()) {
-            if (c.getString(6).equals("completed")) {
+            if (c.getString(6).equals("completed") || c.getString(6).equals("rejected")) {
                 data[i] = "Device: " + c.getString(2) + "\nProblem: " + c.getString(3) + "\nUser: " + c.getString(1) + "\nDates: " + c.getString(5) + "\nStatus: " + c.getString(6) + "\n\n";
                 i++;
             }
             c.moveToNext();
-        }
-
-        Boolean empty = false;
-        if (i==0) {
-            empty = true;
-        }
-        while (i < count) {
-            data[i] = "\n";
-            i++;
-        }
-
-        if (empty) {
-            data = new String[]{"You don't have any completed requests"};
         }
 
 

@@ -1,8 +1,11 @@
 package com.example.saksham.amc_app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -58,32 +62,67 @@ public class MaintenanceRequest extends Activity {
     HorizontalScrollView horizontalScrollView;
     LinearLayout linearLayout;
     DBHelper amc_db;
-    Button button, submit;
+    Button button, submit, date_text;
     String[] problems_array;
     Spinner device_problems;
     EditText desc;
+    Calendar c = Calendar.getInstance();
     int count;
+    int count_plus = 0;
+    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance_request);
-        KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.maintenance_request_layout), getApplicationContext());
+        problems_array = new String[]{"Select Problem"};
+        ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34a")));
+        KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.maintenance_request_layout), MaintenanceRequest.this);
         TextView add_new = (TextView)findViewById(R.id.add_device_text);
         add_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), add_device.class));
+                startActivity(new Intent(MaintenanceRequest.this, add_device.class));
+            }
+        });
+        date_text = (Button)findViewById(R.id.date_scroll);
+
+        date_text.setText(df.format(c.getTime()));
+
+        ImageView plus = (ImageView)findViewById(R.id.plus);
+        ImageView minus = (ImageView)findViewById(R.id.minus);
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count_plus += 1;
+                c.add(Calendar.DAY_OF_YEAR, 1);
+                date_text.setText(df.format(c.getTime()));
             }
         });
 
-        amc_db = new DBHelper(getApplicationContext());
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (count_plus > 0) {
+                    count_plus--;
+                    c.add(Calendar.DAY_OF_YEAR, -1);
+                    date_text.setText(df.format(c.getTime()));
+                }
+            }
+        });
+
+        amc_db = new DBHelper(MaintenanceRequest.this);
         amc_db.open();
         uid = amc_db.get_user();
         horizontalScrollView = (HorizontalScrollView)findViewById(R.id.device_scroll);
         linearLayout = (LinearLayout)findViewById(R.id.device_linear);
         device_problems = (Spinner)findViewById(R.id.problem_spinner);
+        ArrayAdapter<String> problems_adapter = new ArrayAdapter<String>(MaintenanceRequest.this, android.R.layout.simple_spinner_item, problems_array);
+        problems_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        device_problems.setAdapter(problems_adapter);
         submit = (Button)findViewById(R.id.request_button);
         desc = (EditText)findViewById(R.id.description);
+        desc.clearFocus();
         if (!amc_db.isPresent("product_info", "user_id", uid)) {
             make_horizontal_view();
             update_problems_database();
@@ -100,38 +139,36 @@ public class MaintenanceRequest extends Activity {
             setListeners(linearLayout);
         }
 
-        Toast.makeText(getApplicationContext(), "Hi " + amc_db.get_name(uid), Toast.LENGTH_LONG).show();
+        Toast.makeText(MaintenanceRequest.this, "Hi " + amc_db.get_name(uid), Toast.LENGTH_LONG).show();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor cur = amc_db.get_products(uid);
-                cur.moveToFirst();
-                while (!cur.getString(3).equals(global_device)) {
-                    cur.moveToNext();
-                }
-                String vendor = cur.getString(1);
-                String date = "";
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                CheckBox cb = (CheckBox)findViewById(R.id.asap);
-                if (cb.isChecked()) {
-                    date += "ASAP ";
-                }
-                cb = (CheckBox)findViewById(R.id.today);
-                if (cb.isChecked()) {
-                    date += df.format(c.getTime());
-                }
-                cb = (CheckBox)findViewById(R.id.tommorow);
-                if (cb.isChecked()) {
-                    c.add(Calendar.DAY_OF_YEAR, 1);
-                    date += df.format(c.getTime());
-                }
-                PostDataTask postDataTask = new PostDataTask();
-                //execute asynctask
-
                 String problem = device_problems.getSelectedItem().toString();
-                postDataTask.execute(URL,vendor, "\'" + uid, global_device, problem , desc.getText().toString() , date, "new");
-                amc_db.add_request(vendor, uid, global_device, problem, desc.getText().toString(), date, "new");
+                if (problem.equals("Select Problem")) {
+                    Toast.makeText(MaintenanceRequest.this, "Please Select device", Toast.LENGTH_SHORT).show();
+                } else {
+                    String ds;
+                    if (desc.getText().toString().equals("")) {
+                        ds = "None";
+                    } else {
+                        ds = desc.getText().toString();
+                    }
+                    Cursor cur = amc_db.get_products(uid);
+                    cur.moveToFirst();
+
+                    while (!cur.getString(3).equals(global_device)) {
+                        cur.moveToNext();
+                    }
+                    String vendor = cur.getString(1);
+                    String date = date_text.getText().toString();
+
+
+                    PostDataTask postDataTask = new PostDataTask();
+                    //execute asynctask
+
+                    postDataTask.execute(URL, vendor, "\'" + uid, global_device, problem, desc.getText().toString(), date, "new");
+                    amc_db.add_request(vendor, uid, global_device, problem, ds, date, "new");
+                }
             }
         });
 
@@ -143,7 +180,7 @@ public class MaintenanceRequest extends Activity {
             public void onResult(JSONObject object) {
                 update_problems(object);
             }
-        }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1iwnc9RwH0Af_zjCKWYlEBFuydPbizUO2tXlB4Epabt0");
+        }, MaintenanceRequest.this).execute("https://spreadsheets.google.com/tq?key=1iwnc9RwH0Af_zjCKWYlEBFuydPbizUO2tXlB4Epabt0");
     }
 
     private void update_problems(JSONObject object) {
@@ -171,10 +208,10 @@ public class MaintenanceRequest extends Activity {
     }
 
 
-    private void setListeners(LinearLayout l) {
-        int x = l.getChildCount();
+    private void setListeners(final LinearLayout l) {
+        final int x = l.getChildCount();
         for (int i = 0; i < x; ++i) {
-            Button b = (Button)linearLayout.getChildAt(i);
+            final Button b = (Button)linearLayout.getChildAt(i);
             final String device = b.getText().toString();
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -191,6 +228,13 @@ public class MaintenanceRequest extends Activity {
                         cur.moveToNext();
                         i++;
                     }
+                    int y = l.getChildCount();
+                    for (int j = 0; j < y; j++) {
+                        Button but = (Button)l.getChildAt(j);
+                        but.setBackgroundColor(Color.parseColor("#8bc34a"));
+                    }
+
+                    b.setBackgroundColor(Color.parseColor("#27ae60"));
                     ArrayAdapter<String> problems_adapter = new ArrayAdapter<String>(MaintenanceRequest.this, android.R.layout.simple_spinner_item, problems_array);
                     problems_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     device_problems.setAdapter(problems_adapter);
@@ -198,12 +242,16 @@ public class MaintenanceRequest extends Activity {
                 }
             });
         }
+        for (int i = 0; i < x; i++) {
+            Button b = (Button)linearLayout.getChildAt(i);
+            b.setBackgroundColor(Color.parseColor("#8bc34a"));
+        }
     }
 
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(MaintenanceRequest.this, MainActivity.class));
     }
 
     @Override
@@ -223,14 +271,14 @@ public class MaintenanceRequest extends Activity {
         //noinspection SimplifiableIfStatement
         switch (item.getItemId()) {
             case R.id.enquiry_button:
-                startActivity(new Intent(getApplicationContext(),enquiry.class));
+                startActivity(new Intent(MaintenanceRequest.this,enquiry.class));
                 return true;
             case R.id.history_button:
-                startActivity(new Intent(getApplicationContext(), maintainance.class));
+                startActivity(new Intent(MaintenanceRequest.this, maintainance.class));
                 return true;
             case R.id.action_logout:
                 amc_db.logout();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(MaintenanceRequest.this, MainActivity.class));
                 return true;
             case R.id.action_refresh:
                 make_horizontal_view();
@@ -256,7 +304,7 @@ public class MaintenanceRequest extends Activity {
                 }
                 setListeners(linearLayout);
             }
-        }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1dZOtZTU2_ilIzdQYXme30ISWTJnxdaGqapP6FeG_blk");
+        }, MaintenanceRequest.this).execute("https://spreadsheets.google.com/tq?key=1dZOtZTU2_ilIzdQYXme30ISWTJnxdaGqapP6FeG_blk");
 
     }
 
@@ -358,9 +406,9 @@ public class MaintenanceRequest extends Activity {
         protected void onPostExecute(Boolean result){
             //Print Success or failure message accordingly
             if (result) {
-                Toast.makeText(getApplicationContext(), "Thank You For Requesting", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MaintenanceRequest.this, "Thank You For Requesting", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "There was a problem in posting, please try later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MaintenanceRequest.this, "There was a problem in posting, please try later", Toast.LENGTH_SHORT).show();
             }
         }
 

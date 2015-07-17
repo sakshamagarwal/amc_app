@@ -282,7 +282,7 @@ public class DBHelper {
         values.put("device", device);
         values.put("cat", category);
         values.put("status", status);
-        Cursor cursor = get_requests("user", user);
+        Cursor cursor = get_enquiries("user", user);
         cursor.moveToFirst();
         Boolean flag = false;
         while (!cursor.isAfterLast()) {

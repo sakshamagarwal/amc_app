@@ -1,8 +1,11 @@
 package com.example.saksham.amc_app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -35,6 +38,8 @@ public class customer_login extends Activity {
         final DBHelper amc_db = new DBHelper(getApplicationContext());
         amc_db.open();
         KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.login_layout), getApplicationContext());
+        ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34a")));
         id = (EditText)findViewById(R.id.customer_uid);
         error = (TextView)findViewById(R.id.error_msg);
         forgot_id = (TextView)findViewById(R.id.lost_id);
@@ -65,12 +70,11 @@ public class customer_login extends Activity {
             public void onClick(View v) {
                 id_text = id.getText().toString();
                 if (id_text.length()!=5) {
-                    error.setText("Id must be 8 characters long");
+                    error.setText("Id must be 5 characters long");
                 } else {
                     if (amc_db.isPresent("customer_info", "user_id", id_text)) {
                         amc_db.login(id_text);
-                        Toast.makeText(getApplicationContext(), "From DB", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MaintenanceRequest.class));
+                        startActivity(new Intent(customer_login.this, MaintenanceRequest.class));
                     } else {
                         new DownloadWebpageTask(new AsyncResult() {
                             @Override
@@ -78,13 +82,13 @@ public class customer_login extends Activity {
                                 if (validate_login(object, id_text)) {
                                     amc_db.insert(data[0], data[1], data[2], data[3], data[4]);
                                     amc_db.login(id_text);
-                                    Intent i = new Intent(getApplicationContext(), MaintenanceRequest.class);
+                                    Intent i = new Intent(customer_login.this, MaintenanceRequest.class);
                                     startActivity(i);
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "Invalid Id", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(customer_login.this, "Invalid Id", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1WVBAP1zx_JmnvhLSRzKj4B-F19Y4XIWpws5C0WGrE3o");
+                        }, customer_login.this).execute("https://spreadsheets.google.com/tq?key=1WVBAP1zx_JmnvhLSRzKj4B-F19Y4XIWpws5C0WGrE3o");
                     }
                 }
             }

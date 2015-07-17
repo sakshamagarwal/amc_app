@@ -1,7 +1,10 @@
 package com.example.saksham.amc_app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -52,7 +55,9 @@ public class add_device extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_device);
-        final DBHelper amc_db = new DBHelper(getApplicationContext());
+        ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2ecc71")));
+        final DBHelper amc_db = new DBHelper(add_device.this);
         amc_db.open();
         uid = amc_db.get_user();
         final Spinner category = (Spinner)findViewById(R.id.category);
@@ -60,7 +65,7 @@ public class add_device extends Activity {
         device_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(device_adapter);
 
-        KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.add_device_layout), getApplicationContext());
+        KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.add_device_layout), add_device.this);
 
         new DownloadWebpageTask(new AsyncResult() {
             @Override
@@ -70,7 +75,7 @@ public class add_device extends Activity {
                 problems_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 vendors.setAdapter(problems_adapter);
             }
-        }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1MoXjiGRLIOzjWOLO47nBslD7h0M9ODmNNvxQq6_41Dw");
+        }, add_device.this).execute("https://spreadsheets.google.com/tq?key=1MoXjiGRLIOzjWOLO47nBslD7h0M9ODmNNvxQq6_41Dw");
 
         vendors = (Spinner)findViewById(R.id.vendor);
         ArrayAdapter<String> problems_adapter = new ArrayAdapter<String>(add_device.this, android.R.layout.simple_spinner_item, data);
@@ -82,7 +87,7 @@ public class add_device extends Activity {
             @Override
             public void onClick(View v) {
                 amc_db.add_product(amc_db.get_user(), vendors.getSelectedItem().toString(), category.getSelectedItem().toString(), model.getText().toString());
-                startActivity(new Intent(getApplicationContext(), MaintenanceRequest.class));
+                startActivity(new Intent(add_device.this, MaintenanceRequest.class));
             }
         });
 
@@ -201,9 +206,9 @@ public class add_device extends Activity {
         protected void onPostExecute(Boolean result){
             //Print Success or failure message accordingly
             if (result) {
-                Toast.makeText(getApplicationContext(), "Thank You For posting your enquiry", Toast.LENGTH_SHORT).show();
+                Toast.makeText(add_device.this, "Thank You For posting your enquiry", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "There was a problem in posting, please try later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(add_device.this, "There was a problem in posting, please try later", Toast.LENGTH_SHORT).show();
             }
         }
 

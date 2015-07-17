@@ -56,5 +56,7 @@
     <string name="title_activity_vendor_login">VendorLogin</string>
     <string name="title_activity_vendor_requests">VendorRequests</string>
     <string name="title_activity_process_request">ProcessRequest</string>
+    <string name="title_activity_vendor_enquiries">VendorEnquiries</string>
+    <string name="title_activity_enquiry_reply">EnquiryReply</string>
 
 </resources>

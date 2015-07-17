@@ -25,7 +25,7 @@ public class VendorRequests extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_vendor_requests);
-        amc_db = new DBHelper(getApplicationContext());
+        amc_db = new DBHelper(VendorRequests.this);
         amc_db.open();
         uid = amc_db.get_user();
 
@@ -34,14 +34,14 @@ public class VendorRequests extends Activity {
             public void onResult(JSONObject object) {
                 update_requests(object, uid);
             }
-        }, getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1vi4YuASm8Pn9w3TXZrdsD6zsaHHVRAc1I5STzC8ix7M");
+        }, VendorRequests.this).execute("https://spreadsheets.google.com/tq?key=1vi4YuASm8Pn9w3TXZrdsD6zsaHHVRAc1I5STzC8ix7M");
 
         new DownloadWebpageTask(new AsyncResult() {
             @Override
             public void onResult(JSONObject object) {
                 get_engineer_list(object, uid);
             }
-        },getApplicationContext()).execute("https://spreadsheets.google.com/tq?key=1ktZNgZJOR2BD0TliTd2oaYe7WhmZhvtG_gZXAEE6APM");
+        },VendorRequests.this).execute("https://spreadsheets.google.com/tq?key=1ktZNgZJOR2BD0TliTd2oaYe7WhmZhvtG_gZXAEE6APM");
 
         ActionBar ab = getActionBar();
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -79,7 +79,9 @@ public class VendorRequests extends Activity {
             return true;
         } else if (id == R.id.action_logout) {
             amc_db.logout();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(VendorRequests.this, MainActivity.class));
+        } else if (id == R.id.to_enquiry) {
+            startActivity(new Intent(VendorRequests.this, VendorEnquiries.class));
         }
 
         return super.onOptionsItemSelected(item);

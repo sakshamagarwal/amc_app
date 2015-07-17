@@ -7,14 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,9 +18,10 @@ import java.util.List;
 /**
  * Created by saksham on 22/6/15.
  */
-public class Tab1Fragment extends Fragment {
+public class v_e_tab2 extends Fragment {
 
-    String[] data = {"You have not made any requests yet"};
+    String[] data = {"You have no completed enquiries"};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -33,29 +29,30 @@ public class Tab1Fragment extends Fragment {
         amc_db.open();
         String uid = amc_db.get_user();
         //Toast.makeText(getActivity(), uid, Toast.LENGTH_SHORT);
-        Cursor c = amc_db.get_requests("user", uid);
+        Cursor c = amc_db.get_enquiries("vendor", uid);
         c.moveToFirst();
         int count = c.getCount();
         if (count!=0) {
             int size = 0;
             while (!c.isAfterLast()) {
-                if (c.getString(6).equals("new") || c.getString(6).equals("engineer assigned")) {
+                if (!c.getString(4).equals("new")) {
                     size++;
                 }
                 c.moveToNext();
             }
-            data = new String[size];
+            if (size!=0) {
+                data = new String[size];
+            }
         }
-        c.moveToFirst();
         int i = 0;
+        c.moveToFirst();
         while (!c.isAfterLast()) {
-            if (c.getString(6).equals("new") || c.getString(6).equals("engineer assigned")) {
-                data[i] = "Device: " + c.getString(2) + "\nProblem: " + c.getString(3) + "\nVendor: " + c.getString(0) + "\nStatus: " + c.getString(6) + "\n\n";
+            if (!c.getString(4).equals("new")) {
+                data[i] = "Device: " + c.getString(2) + "\nCategory: " + c.getString(3) + "\nVendor: " + c.getString(0) + "\n\n";
                 i++;
             }
             c.moveToNext();
         }
-
 
         List<String> completed_detail = new ArrayList<String>(Arrays.asList(data));
 
@@ -67,6 +64,4 @@ public class Tab1Fragment extends Fragment {
         listView.setAdapter(mDetails);
         return rootView;
     }
-
-
 }

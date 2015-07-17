@@ -8,11 +8,19 @@
     android:focusableInTouchMode="true"
     android:id="@+id/login_layout">
 
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/customer_uid"
+        android:src="@drawable/logo"
+        />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/login_submit"
         android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:singleLine="true"
         android:hint="YOUR UNIQUE ID"
         android:inputType="number"
@@ -24,7 +32,8 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="#FF0000"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/login_submit"
+        android:layout_centerHorizontal="true"
         android:id="@+id/error_msg"/>
 
     <Button
@@ -33,7 +42,8 @@
         android:text="Login"
         android:layout_centerHorizontal="true"
         android:id="@+id/login_submit"
-        android:layout_above="@+id/error_msg"/>
+        android:layout_below="@+id/customer_uid"
+        android:background="#8bc34a"/>
 
     <TextView
         android:layout_width="wrap_content"

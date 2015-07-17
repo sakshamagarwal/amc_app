@@ -45,7 +45,7 @@
         android:layout_below="@+id/select_problem_text"></Spinner>
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:hint="\nDescription"
         android:id="@+id/description"
@@ -59,62 +59,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add New Device"
-        android:textColor="#00FF00"
+        android:textColor="#c0392b"
         android:id="@+id/add_device_text"
         android:layout_below="@id/device_scroll"
         android:layout_alignParentRight="true"
         android:clickable="true"/>
 
-    <TextView
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/select_date_text"
-        android:text="\nSelect date"
+        android:id="@+id/date_scroll"
         android:layout_below="@+id/description"
         android:layout_centerHorizontal="true"/>
 
+     <ImageView
+         android:layout_width="50dp"
+         android:layout_height="50dp"
+         android:layout_toLeftOf="@+id/date_scroll"
+         android:layout_below="@+id/description"
+         android:id="@+id/minus"
+         android:src="@drawable/minus"
+          />
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/select_date_text"
-        android:id="@+id/date_scroll"
-        android:layout_centerHorizontal="true">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal">
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ASAP"
-                android:id="@+id/asap"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TODAY"
-                android:id="@+id/today"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TOMMOROW"
-                android:id="@+id/tommorow"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/custom_date"
-                android:hint="dd/mm/yy"/>
-            </LinearLayout>
-        </HorizontalScrollView>
+     <ImageView
+         android:layout_width="50dp"
+         android:layout_height="50dp"
+         android:layout_toRightOf="@+id/date_scroll"
+         android:layout_below="@+id/description"
+         android:id="@+id/plus"
+         android:src="@drawable/plus"/>
 
-     <Button
+    <Button
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:text="Post Request"
          android:id="@+id/request_button"
          android:layout_below="@+id/date_scroll"
+         android:background="#8bc34a"
          android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

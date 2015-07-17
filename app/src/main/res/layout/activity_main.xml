@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
      >
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_home"
-        android:layout_height="100dp"
-        android:layout_width="100dp"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
         android:layout_centerInParent="true"
-        android:src="@drawable/splash"/>
+        android:src="@drawable/splash1"/>
    
     
 

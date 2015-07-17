@@ -86,7 +86,8 @@
         <activity
             android:name=".MaintenanceRequest"
             android:label="@string/title_activity_maintenance_request"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.saksham.amc_app.MainActivity" />
@@ -118,6 +119,14 @@
         <activity
             android:name=".ProcessRequest"
             android:label="@string/title_activity_process_request" >
+        </activity>
+        <activity
+            android:name=".VendorEnquiries"
+            android:label="@string/title_activity_vendor_enquiries" >
+        </activity>
+        <activity
+            android:name=".EnquiryReply"
+            android:label="@string/title_activity_enquiry_reply" >
         </activity>
     </application>
 
