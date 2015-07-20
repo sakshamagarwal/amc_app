@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +46,7 @@ public class VendorRequests extends Activity {
         },VendorRequests.this).execute("https://spreadsheets.google.com/tq?key=1ktZNgZJOR2BD0TliTd2oaYe7WhmZhvtG_gZXAEE6APM");
 
         ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34c")));
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         String label1 = "Pending Requests";
         Tab tab = ab.newTab();

@@ -56,7 +56,7 @@ public class add_device extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_device);
         ActionBar ab = getActionBar();
-        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2ecc71")));
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34c")));
         final DBHelper amc_db = new DBHelper(add_device.this);
         amc_db.open();
         uid = amc_db.get_user();

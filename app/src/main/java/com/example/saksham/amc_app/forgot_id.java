@@ -1,8 +1,10 @@
 package com.example.saksham.amc_app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +31,8 @@ public class forgot_id extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_id);
         KeyboardManager km = new KeyboardManager((ViewGroup)findViewById(R.id.forgot_id_layout), getApplicationContext());
+        ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34c")));
         button = (Button)findViewById(R.id.get_id_button);
         textView = (TextView)findViewById(R.id.id_result);
         final EditText editText = (EditText)findViewById(R.id.mobile);

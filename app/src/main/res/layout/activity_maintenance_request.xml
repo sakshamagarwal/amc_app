@@ -70,8 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/date_scroll"
+        android:background="#8bc34a"
         android:layout_below="@+id/description"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"/>
 
      <ImageView
          android:layout_width="50dp"
@@ -80,6 +82,7 @@
          android:layout_below="@+id/description"
          android:id="@+id/minus"
          android:src="@drawable/minus"
+         android:layout_marginTop="15dp"
           />
 
      <ImageView
@@ -88,16 +91,18 @@
          android:layout_toRightOf="@+id/date_scroll"
          android:layout_below="@+id/description"
          android:id="@+id/plus"
-         android:src="@drawable/plus"/>
+         android:src="@drawable/plus"
+         android:layout_marginTop="15dp"/>
 
     <Button
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Post Request"
-         android:id="@+id/request_button"
-         android:layout_below="@+id/date_scroll"
-         android:background="#8bc34a"
-         android:layout_centerHorizontal="true"/>
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Post Request"
+        android:id="@+id/request_button"
+        android:layout_below="@+id/date_scroll"
+        android:background="#8bc34a"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
 

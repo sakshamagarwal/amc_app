@@ -1,7 +1,10 @@
 package com.example.saksham.amc_app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +18,8 @@ public class EnquiryReply extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enquiry_reply);
         Intent intent = getIntent();
+        ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34c")));
         if (intent!=null) {
             String detailStr = intent.getStringExtra(Intent.EXTRA_TEXT);
             ((TextView)findViewById(R.id.detail)).setText(detailStr);

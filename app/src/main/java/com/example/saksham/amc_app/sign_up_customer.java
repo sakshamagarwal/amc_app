@@ -67,14 +67,14 @@ public class sign_up_customer extends Activity {
                         } else if (Arrays.asList(mobile_data).contains(mobile)) {
                             Toast.makeText(getApplicationContext(), "1 mobile no. can be used with only 1 Account", Toast.LENGTH_SHORT).show();
                         } else if (password.equals(confirmpass) && password!="") {
-                            Intent i = new Intent(getApplicationContext(),custsignup_addvend.class);
+                            /*Intent i = new Intent(getApplicationContext(),custsignup_addvend.class);
                             Bundle extras = new Bundle();
                             extras.putString("EXTRA_UNAME", username);
                             extras.putString("EXTRA_PASS", password);
                             extras.putString("EXTRA_EMAIL", emailid);
                             extras.putString("EXTRA_MOB", mobile);
                             i.putExtras(extras);
-                            startActivity(i);
+                            startActivity(i);*/
                         } else {
                             Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
                         }

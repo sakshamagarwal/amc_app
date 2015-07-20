@@ -1,7 +1,10 @@
 package com.example.saksham.amc_app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,7 +46,8 @@ public class VendorLogin extends Activity {
         amc_db.open();
         username = (EditText)findViewById(R.id.signin_username);
         password = (EditText)findViewById(R.id.signin_pass);
-
+        ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34c")));
 
         Button signin_btnv =(Button) findViewById(R.id.signin_btnv);
         signin_btnv.setOnClickListener(new View.OnClickListener() {

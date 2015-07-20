@@ -2,6 +2,7 @@ package com.example.saksham.amc_app;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -343,6 +344,13 @@ public class MaintenanceRequest extends Activity {
     }
 
     private class PostDataTask extends AsyncTask<String, Void, Boolean> {
+        ProgressDialog pd;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd = ProgressDialog.show(MaintenanceRequest.this, "", "Loading");
+        }
 
         @Override
         protected Boolean doInBackground(String... contactData) {
@@ -405,6 +413,9 @@ public class MaintenanceRequest extends Activity {
         @Override
         protected void onPostExecute(Boolean result){
             //Print Success or failure message accordingly
+            if (pd!=null) {
+                pd.dismiss();
+            }
             if (result) {
                 Toast.makeText(MaintenanceRequest.this, "Thank You For Requesting", Toast.LENGTH_SHORT).show();
             } else {

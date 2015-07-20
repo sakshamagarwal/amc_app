@@ -43,6 +43,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/login_submit"
         android:layout_below="@+id/customer_uid"
+        android:textColor="#000000"
         android:background="#8bc34a"/>
 
     <TextView

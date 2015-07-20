@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +39,7 @@ public class VendorEnquiries extends Activity {
         }, VendorEnquiries.this).execute("https://spreadsheets.google.com/tq?key=1LexGBch7rDXbyK0h_KqdEp27KsN-77p4W8m5NEvWWuM");
 
         ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34c")));
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         String label1 = "Pending Enquiries";
         ActionBar.Tab tab = ab.newTab();

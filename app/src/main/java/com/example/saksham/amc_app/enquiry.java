@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,6 +45,7 @@ public class enquiry extends Activity {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.maintainance);
         ActionBar ab = getActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#8bc34c")));
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         String label1 = "Pending Enquiries";
         Tab tab = ab.newTab();
